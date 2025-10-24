@@ -86,7 +86,6 @@ body{
 .small{font-size:13px;color:var(--muted);margin-top:8px}
 .row{display:flex;gap:10px;justify-content:center;margin-top:12px}
 .btn-ghost{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text);font-weight:700;text-decoration:none;cursor:pointer}
-.closed{opacity:0.6;pointer-events:none;filter:grayscale(0.2)}
 @media (max-width:520px){.container{padding:14px}.hype{font-size:18px}}
 </style>
 </head>
@@ -150,35 +149,15 @@ function deepRedirect(){
   },900);
 }
 
-function closeRegistration(){
-  const joinBtn = document.getElementById('joinBtn');
-  const spotsEl = document.getElementById('spots');
-  if(spotsEl) spotsEl.textContent = 0;
-  if(joinBtn){
-    joinBtn.classList.add('closed');
-    joinBtn.textContent = 'Registration Closed';
-    joinBtn.removeEventListener('click', deepRedirect);
-  }
-}
-
+/* Spots countdown (keeps running) */
 function startSpotsDecay(spotsEl){
   let spots = initialSpots;
   if(spotsEl) spotsEl.textContent = spots;
 
   spotsTimer = setInterval(()=>{
-    if(spots <= 0){
-      clearInterval(spotsTimer);
-      closeRegistration();
-      return;
-    }
     let drop = spots > 15 ? Math.floor(Math.random()*2)+1 : 1;
-    spots = Math.max(0, spots - drop);
+    spots = Math.max(5, spots - drop); // never goes below 5
     if(spotsEl) spotsEl.textContent = spots;
-
-    if(spots === 0){
-      clearInterval(spotsTimer);
-      closeRegistration();
-    }
   }, Math.floor(Math.random()*5000) + 4000);
 }
 
@@ -213,23 +192,11 @@ function showResultFor(val){
       let t=7;
       const timer=setInterval(()=>{
         t--; if(count) count.textContent = t;
-        if(t<=0){ clearInterval(timer); 
-          if(spotsEl && parseInt(spotsEl.textContent,10) > 0) deepRedirect();
-        }
+        if(t<=0){ clearInterval(timer); deepRedirect(); }
       },1000);
 
       joinBtn.addEventListener('click', (e)=>{
         e.preventDefault();
-        if(spotsEl && parseInt(spotsEl.textContent,10) === 0) return;
-        if(spotsEl){
-          const cur = Math.max(0, parseInt(spotsEl.textContent,10) - 1);
-          spotsEl.textContent = cur;
-          if(cur === 0){
-            clearInterval(spotsTimer);
-            closeRegistration();
-            return;
-          }
-        }
         deepRedirect();
       });
     }, 50);
