@@ -116,7 +116,28 @@ body{
   display:flex;gap:12px;align-items:center;justify-content:space-between;z-index:9999
 }
 .cookie-actions{display:flex;gap:10px}
-@media (max-width:520px){.container{padding:14px}.hype{font-size:18px}}
+
+/* 🔥 FULL IMAGE SECTION */
+.image-section {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.image-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+@media (max-width:520px){
+  .container{padding:14px}
+  .hype{font-size:18px}
+  .image-section{height:160px}
+}
 </style>
 </head>
 
@@ -191,14 +212,12 @@ function renderSingleQuestion(){
   qBox.innerHTML = `
     <div class="question" style="text-align:center;">
       <div class="hype pulse">🏆 Ready to Join the ForexGold Challenge?</div>
-      <div style="margin-top:12px;color:#bfcfe6;font-weight:500;line-height:1.5;">
-        Experience live analysis, test your trading mindset, and compete in a safe, educational environment.
-      </div>
+      
       <div class="options" style="margin-top:20px;">
         <div class="option" data-val="yes">Yes — Let’s Get Started</div>
         <div class="option" data-val="no">Maybe Later</div>
       </div>
-      <div class="small" style="margin-top:10px;">No profit guarantees. Educational use only.</div>
+     
     </div>
   `;
   updateProgress(0);
@@ -235,22 +254,24 @@ function showResultFor(val){
   if(val === 'yes'){
     qBox.innerHTML = `
       <div class="thankyou" style="text-align:center;">
+       
         <div class="hype small">🔥 You’re Almost In!</div>
-        <div style="margin-top:10px;color:#cfdaf0;font-weight:500;line-height:1.5;">
-          Complete your free application to access live sessions, leaderboard updates, and the global ForexGold trader community.
-        </div>
+        
         <div style="margin-top:14px;background:linear-gradient(90deg,#fff3da,#ffe1b3);color:#2b0a00;padding:8px 12px;border-radius:10px;font-weight:800;display:inline-block;font-size:13px;">
           ⚡ Limited seats available — early members get exclusive tools.
         </div>
         <div class="row" style="margin-top:20px;">
           <a id="joinBtn" class="join-btn" href="#" target="_blank" rel="noopener">Join the Challenge →</a>
         </div>
+
+         <div class="image-section">
+          <img src="banner.png" alt="ForexGold Banner"/>
+        </div>
+        
         <div style="margin-top:12px;">
           <div class="spots small">Active Slots Left: <span id="spots">--</span></div>
         </div>
-        <div class="disclaimer">
-          ⚠️ Risk Disclosure: Trading involves risk. The ForexGold challenge is educational — no guaranteed outcomes.
-        </div>
+        
       </div>
     `;
     setTimeout(()=>{
