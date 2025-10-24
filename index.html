@@ -12,7 +12,7 @@
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+if(!f._fbq)f._fbq=n;n.push=n.loaded=!0;n.version='2.0';
 n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
@@ -74,14 +74,38 @@ body{
 .option:hover{transform:translateY(-6px);box-shadow:0 18px 46px rgba(255,160,0,0.12);background:linear-gradient(90deg,rgba(255,140,0,0.08),rgba(255,180,0,0.06));}
 .option.selected{background:linear-gradient(90deg,rgba(255,180,0,0.18),rgba(255,120,0,0.12));color:#fff;transform:translateY(-8px)}
 .thankyou{text-align:center;padding:6px}
+
+/* 🔥 Animated CTA Button */
 .join-btn{
-  display:inline-block;position:relative;overflow:hidden;
-  background:linear-gradient(90deg,#ffb300,#ff6b00);
-  color:#fff;padding:12px 18px;border-radius:12px;font-weight:900;text-decoration:none;
-  box-shadow:0 14px 40px rgba(255,160,0,0.18);
+  display:inline-block;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(270deg,#ffb300,#ff6b00,#ffb300);
+  background-size:400% 400%;
+  color:#fff;
+  padding:14px 22px;
+  border-radius:14px;
+  font-weight:900;
+  text-decoration:none;
+  box-shadow:0 0 25px rgba(255,160,0,0.3);
+  animation:gradientMove 3s ease infinite, glowPulse 2s ease-in-out infinite;
+  transition:transform .2s;
 }
-.join-btn::after{content:'';position:absolute;left:-50%;top:0;width:40%;height:100%;background:linear-gradient(120deg,rgba(255,255,255,0)0%,rgba(255,255,255,0.14)50%,rgba(255,255,255,0)100%);transform:skewX(-20deg);filter:blur(6px);animation:shine 3.4s linear infinite}
-@keyframes shine{0%{left:-60%}100%{left:120%}}
+.join-btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 40px rgba(255,180,0,0.45);
+}
+@keyframes gradientMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes glowPulse{
+  0%{box-shadow:0 0 20px rgba(255,160,0,0.3)}
+  50%{box-shadow:0 0 35px rgba(255,180,0,0.6)}
+  100%{box-shadow:0 0 20px rgba(255,160,0,0.3)}
+}
+
 .spots{
   margin-top:10px;font-weight:900;background:linear-gradient(90deg,#fff7e6,#fff1d6);color:#2a0a00;padding:8px 12px;border-radius:12px;display:inline-block;
   box-shadow:0 8px 30px rgba(255,150,0,0.06);
@@ -119,7 +143,7 @@ body{
 <!-- Footer Section -->
 <div class="footer">
   This channel ads managed by 
-  <a href="https://shrirammediaagency.netlify.app" target="_blank" rel="noopener">ShriRam Media Agency</a>
+  <a href="https://shrirammedia.com" target="_blank" rel="noopener">ShriRam Media Agency</a>
 </div>
 
 <script>
