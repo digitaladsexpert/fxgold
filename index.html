@@ -3,27 +3,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>ForexGold</title>
-<meta name="description" content="Join the $500 to $8,000 AutoTrading Tournament. Limited seats available!"/>
+<title>ForexGold Challenge</title>
+<meta name="description" content="Join the ForexGold participation trading challenge — sharpen your trading skills in a safe, educational environment."/>
 <meta name="theme-color" content="#001022">
-
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1357908655770996');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1357908655770996&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 
 <style>
 :root{
@@ -45,51 +27,53 @@ body{
 .container{
   width:100%;max-width:640px;
   background:var(--card-bg);
-  border-radius:14px;padding:20px;
+  border-radius:14px;padding:26px 20px;
   box-shadow:0 24px 60px rgba(0,10,30,0.6);
-  position:relative;overflow:hidden;color:var(--text);
+  position:relative;overflow:hidden;
+  color:var(--text);text-align:center;
 }
 .progressWrap{display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .progress{flex:1;height:9px;background:rgba(255,255,255,0.03);border-radius:999px;overflow:hidden}
 .progress>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent1),var(--accent2));width:0;transition:width .45s ease}
 .progressNum{min-width:44px;text-align:right;color:var(--muted);font-weight:700;font-size:13px}
-.question{animation:fadeIn .32s ease;text-align:center;margin-bottom:14px}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .hype{
-  display:inline-block;padding:10px 14px;border-radius:12px;font-weight:900;font-size:20px;
-  background:linear-gradient(90deg,#ffeabf,#ffc680);color:#1b0520;
-  box-shadow:0 8px 30px rgba(255,160,0,0.15);
+  display:inline-block;padding:10px 14px;border-radius:12px;
+  font-weight:900;font-size:20px;
+  background:linear-gradient(90deg,#ffeabf,#ffc680);
+  color:#1b0520;box-shadow:0 8px 30px rgba(255,160,0,0.15);
 }
 .hype.small{font-size:16px;padding:8px 12px}
 .pulse{animation:pulse 1.6s infinite}
 @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
-.options{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.options{display:flex;flex-direction:column;gap:10px;margin-top:18px}
 .option{
   background:rgba(255,255,255,0.02);
-  border-radius:12px;padding:12px 14px;cursor:pointer;font-weight:800;text-align:center;
+  border-radius:12px;padding:12px 14px;cursor:pointer;
+  font-weight:800;text-align:center;
   border:1px solid rgba(255,255,255,0.04);
   box-shadow:0 8px 30px rgba(0,0,0,0.5);
   transition:transform .16s,box-shadow .16s,background .16s;
 }
-.option:hover{transform:translateY(-6px);box-shadow:0 18px 46px rgba(255,160,0,0.12);background:linear-gradient(90deg,rgba(255,140,0,0.08),rgba(255,180,0,0.06));}
-.option.selected{background:linear-gradient(90deg,rgba(255,180,0,0.18),rgba(255,120,0,0.12));color:#fff;transform:translateY(-8px)}
-.thankyou{text-align:center;padding:6px}
-
-/* 🔥 Animated CTA Button */
+.option:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 46px rgba(255,160,0,0.12);
+  background:linear-gradient(90deg,rgba(255,140,0,0.08),rgba(255,180,0,0.06));
+}
+.option.selected{
+  background:linear-gradient(90deg,rgba(255,180,0,0.18),rgba(255,120,0,0.12));
+  color:#fff;transform:translateY(-8px)
+}
 .join-btn{
   display:inline-block;
   position:relative;
   overflow:hidden;
   background:linear-gradient(270deg,#ffb300,#ff6b00,#ffb300);
   background-size:400% 400%;
-  color:#fff;
-  padding:14px 22px;
-  border-radius:14px;
-  font-weight:900;
-  text-decoration:none;
+  color:#fff;padding:14px 22px;
+  border-radius:14px;font-weight:900;text-decoration:none;
   box-shadow:0 0 25px rgba(255,160,0,0.3);
   animation:gradientMove 3s ease infinite, glowPulse 2s ease-in-out infinite;
-  transition:transform .2s;
+  transition:transform .2s;margin:auto;
 }
 .join-btn:hover{
   transform:scale(1.05);
@@ -105,16 +89,33 @@ body{
   50%{box-shadow:0 0 35px rgba(255,180,0,0.6)}
   100%{box-shadow:0 0 20px rgba(255,160,0,0.3)}
 }
-
 .spots{
-  margin-top:10px;font-weight:900;background:linear-gradient(90deg,#fff7e6,#fff1d6);color:#2a0a00;padding:8px 12px;border-radius:12px;display:inline-block;
-  box-shadow:0 8px 30px rgba(255,150,0,0.06);
+  margin-top:10px;font-weight:900;
+  background:linear-gradient(90deg,#fff7e6,#fff1d6);
+  color:#2a0a00;padding:8px 12px;border-radius:12px;
+  display:inline-block;
+  box-shadow:0 8px 30px rgba(255,150,0,0.06)
 }
-.spots.small{font-weight:800;font-size:13px}
-.fomo{background:linear-gradient(90deg,#fff3da,#ffe1b3);color:#2b0a00;padding:8px 12px;border-radius:10px;font-weight:800;display:inline-block;margin:10px 0;font-size:13px}
 .small{font-size:13px;margin-top:8px}
-.row{display:flex;gap:10px;justify-content:center;margin-top:12px}
-.btn-ghost{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text);font-weight:700;text-decoration:none;cursor:pointer}
+.row{display:flex;gap:10px;justify-content:center;margin-top:16px}
+.btn-ghost{
+  padding:10px 14px;border-radius:10px;
+  border:1px solid rgba(255,255,255,0.06);
+  background:transparent;color:var(--text);
+  font-weight:700;text-decoration:none;cursor:pointer
+}
+.disclaimer{
+  margin-top:18px;font-size:13px;
+  color:#ffd0a0;background:rgba(0,0,0,0.2);
+  padding:10px;border-radius:10px;text-align:center;
+}
+.cookie-bar{
+  position:fixed;left:12px;right:12px;bottom:18px;
+  background:#fff;padding:12px;border-radius:12px;
+  color:#111;box-shadow:0 12px 40px rgba(0,0,0,0.4);
+  display:flex;gap:12px;align-items:center;justify-content:space-between;z-index:9999
+}
+.cookie-actions{display:flex;gap:10px}
 @media (max-width:520px){.container{padding:14px}.hype{font-size:18px}}
 </style>
 </head>
@@ -125,11 +126,57 @@ body{
     <div class="progress"><i id="bar"></i></div>
     <div class="progressNum" id="progNum">0%</div>
   </div>
+
   <div id="q-box"></div>
 </main>
 
+<div id="cookieBar" class="cookie-bar" style="display:none;">
+  <div>
+    <strong>Privacy & tracking</strong>
+    <div style="font-size:13px;color:#333;max-width:560px">
+      We use cookies & analytics to enhance your experience. Tracking (including Meta Pixel) starts only after you accept.
+    </div>
+  </div>
+  <div class="cookie-actions">
+    <button id="declineCookies" class="btn-ghost" style="background:transparent;color:#222;border:1px solid #ddd">Decline</button>
+    <button id="acceptCookies" class="join-btn">Accept & Continue</button>
+  </div>
+</div>
+
 <script>
-const telegramAppLink = "tg://join?invite=6D7PwRfgQflhZGVh";
+const fbPixelId = '1357908655770996';
+function initMetaPixel(){
+  if(window.__META_PIXEL_INIT) return;
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', fbPixelId);
+  fbq('track', 'PageView');
+  window.__META_PIXEL_INIT = true;
+}
+
+const cookieBar = document.getElementById('cookieBar');
+function showCookieBar(){ cookieBar.style.display = 'flex'; }
+function hideCookieBar(){ cookieBar.style.display = 'none'; }
+function setConsent(choice){
+  try{ localStorage.setItem('fg_consent', choice); }catch(e){}
+  if(choice === 'accept'){ initMetaPixel(); }
+  hideCookieBar();
+}
+try{
+  const c = localStorage.getItem('fg_consent');
+  if(!c) showCookieBar();
+  else if(c === 'accept') initMetaPixel();
+}catch(e){ showCookieBar(); }
+
+document.getElementById('acceptCookies').addEventListener('click', ()=>setConsent('accept'));
+document.getElementById('declineCookies').addEventListener('click', ()=>setConsent('decline'));
+
 const telegramWebLink = "https://t.me/+6D7PwRfgQflhZGVh";
 
 let answered = false;
@@ -142,14 +189,16 @@ let spotsTimer = null;
 
 function renderSingleQuestion(){
   qBox.innerHTML = `
-    <div class="question">
-      <div class="hype pulse">💰 Do you want to join the $500 → $8,000 AutoTrading Tournament?</div>
-      <div style="height:10px"></div>
-      <div class="options">
-        <div class="option" data-val="yes">Yes — I want to join the tournament</div>
-        <div class="option" data-val="no">No — maybe later</div>
+    <div class="question" style="text-align:center;">
+      <div class="hype pulse">🏆 Ready to Join the ForexGold Challenge?</div>
+      <div style="margin-top:12px;color:#bfcfe6;font-weight:500;line-height:1.5;">
+        Experience live analysis, test your trading mindset, and compete in a safe, educational environment.
       </div>
-      <div class="small">Tap one — limited access for serious traders only.</div>
+      <div class="options" style="margin-top:20px;">
+        <div class="option" data-val="yes">Yes — Let’s Get Started</div>
+        <div class="option" data-val="no">Maybe Later</div>
+      </div>
+      <div class="small" style="margin-top:10px;">No profit guarantees. Educational use only.</div>
     </div>
   `;
   updateProgress(0);
@@ -168,21 +217,13 @@ function onChooseSingle(ev){
   setTimeout(()=>{ updateProgress(100); showResultFor(val); },220);
 }
 
-function deepRedirect(){
-  const now = Date.now();
-  window.location.href = telegramAppLink;
-  setTimeout(()=>{ 
-    if(Date.now() - now < 2000){
-      window.location.href = telegramWebLink;
-    }
-  },900);
+function safeRedirect(){
+  window.open(telegramWebLink, '_blank', 'noopener');
 }
 
-/* Spots countdown */
 function startSpotsDecay(spotsEl){
   let spots = initialSpots;
   if(spotsEl) spotsEl.textContent = spots;
-
   spotsTimer = setInterval(()=>{
     let drop = spots > 15 ? Math.floor(Math.random()*2)+1 : 1;
     spots = Math.max(5, spots - drop);
@@ -193,58 +234,56 @@ function startSpotsDecay(spotsEl){
 function showResultFor(val){
   if(val === 'yes'){
     qBox.innerHTML = `
-      <div class="thankyou">
-        <div class="hype small">🔥 You’re seconds away from joining the $500 → $8,000 AutoTrading Tournament!</div>
-        <div class="thank-sub">Top traders are already competing in <b>ForexGold</b> — earn daily updates, signals & leaderboard insights.</div>
-        <div><span class="fomo">🚀 Limited seats — claim your free spot before registrations close!</span></div>
-        <div class="fomo">📊 Automated trades, risk-managed strategies, and real-time tournament results.</div>
-        <div class="fomo">⏰ Entry closing soon — tap below to join ForexGold now.</div>
-
-        <div class="row" style="margin-top:16px">
-          <a id="joinBtn" class="join-btn" href="#" target="_blank" rel="noopener">⚡ Join the $500 → $8,000 Tournament Now →</a>
+      <div class="thankyou" style="text-align:center;">
+        <div class="hype small">🔥 You’re Almost In!</div>
+        <div style="margin-top:10px;color:#cfdaf0;font-weight:500;line-height:1.5;">
+          Complete your free application to access live sessions, leaderboard updates, and the global ForexGold trader community.
         </div>
-
-        <div style="margin-top:12px">
-          <div class="spots small">Only <span id="spots">--</span> spots left</div>
+        <div style="margin-top:14px;background:linear-gradient(90deg,#fff3da,#ffe1b3);color:#2b0a00;padding:8px 12px;border-radius:10px;font-weight:800;display:inline-block;font-size:13px;">
+          ⚡ Limited seats available — early members get exclusive tools.
         </div>
-
-        <div class="count" style="margin-top:14px">Auto-redirecting in <span id="count">7</span>s...</div>
+        <div class="row" style="margin-top:20px;">
+          <a id="joinBtn" class="join-btn" href="#" target="_blank" rel="noopener">Join the Challenge →</a>
+        </div>
+        <div style="margin-top:12px;">
+          <div class="spots small">Active Slots Left: <span id="spots">--</span></div>
+        </div>
+        <div class="disclaimer">
+          ⚠️ Risk Disclosure: Trading involves risk. The ForexGold challenge is educational — no guaranteed outcomes.
+        </div>
       </div>
     `;
-
     setTimeout(()=>{
-      const count = document.getElementById('count');
       const joinBtn = document.getElementById('joinBtn');
       const spotsEl = document.getElementById('spots');
       startSpotsDecay(spotsEl);
-
-      let t=7;
-      const timer=setInterval(()=>{
-        t--; if(count) count.textContent = t;
-        if(t<=0){ clearInterval(timer); deepRedirect(); }
-      },1000);
-
       joinBtn.addEventListener('click', (e)=>{
         e.preventDefault();
-        deepRedirect();
+        const c = localStorage.getItem('fg_consent');
+        if(c !== 'accept'){ showCookieBar(); return; }
+        safeRedirect();
       });
     }, 50);
-
   } else {
     qBox.innerHTML = `
-      <div class="thankyou">
-        <div class="hype small">No worries — maybe next round 🎯</div>
-        <div class="thank-sub">You can explore ForexGold’s free insights & community anytime.</div>
-        <div class="row">
-          <button id="backBtn" class="btn-ghost">Back</button>
-          <a id="learnBtn" class="join-btn" href="#" target="_blank" rel="noopener">Visit ForexGold →</a>
+      <div class="thankyou" style="text-align:center;">
+        <div class="hype small">No Problem 👋</div>
+        <div style="margin-top:10px;color:#cfdaf0;font-weight:500;">
+          You can join anytime — follow our free learning resources and updates on Telegram.
         </div>
-        <div class="small">Stay tuned — next tournament begins soon.</div>
+        <div class="row" style="margin-top:18px;">
+          <button id="backBtn" class="btn-ghost">Go Back</button>
+          <a id="learnBtn" class="join-btn" href="#" target="_blank" rel="noopener">Explore Resources</a>
+        </div>
       </div>
     `;
     setTimeout(()=>{
       document.getElementById('backBtn').addEventListener('click', ()=>{ answered=false; renderSingleQuestion(); });
-      document.getElementById('learnBtn').addEventListener('click', deepRedirect);
+      document.getElementById('learnBtn').addEventListener('click', ()=>{
+        const c = localStorage.getItem('fg_consent');
+        if(c !== 'accept'){ showCookieBar(); return; }
+        safeRedirect();
+      });
     },50);
   }
 }
