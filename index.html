@@ -13,7 +13,8 @@
   --accent2:#ff6b00;
   --text:#e6eefb;
   --muted:#bfcfe6;
-  --card-bg:rgba(6,8,15,0.9);
+  --card-bg:rgba(6,8,15,0.92);
+  --glass: rgba(255,255,255,0.02);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
@@ -23,15 +24,56 @@ body{
   flex-direction:column;
   padding:18px;color:var(--text);
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 .container{
-  width:100%;max-width:640px;
+  width:100%;max-width:920px;
   background:var(--card-bg);
-  border-radius:14px;padding:26px 20px;
+  border-radius:14px;padding:22px;
   box-shadow:0 24px 60px rgba(0,10,30,0.6);
   position:relative;overflow:hidden;
   color:var(--text);text-align:center;
 }
+
+/* HERO / IMAGE */
+.image-section {
+  width:100%;
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+  margin-bottom:16px;
+  /* fluid height: desktop tall, mobile compact */
+  height: clamp(220px, 45vw, 520px);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+/* optional overlay to improve text contrast */
+.image-overlay {
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.45));
+  pointer-events:none;
+}
+
+/* if you prefer using an <img> for SEO, there's a fallback class */
+.image-section img {
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+
+/* small badge/logo area on hero (optional) */
+.hero-badge{
+  position:absolute;left:16px;top:16px;
+  background:linear-gradient(90deg,#fff7e6,#fff1d6);
+  color:#2a0a00;padding:8px 12px;border-radius:10px;font-weight:800;
+  box-shadow:0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* rest of the card content */
 .progressWrap{display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .progress{flex:1;height:9px;background:rgba(255,255,255,0.03);border-radius:999px;overflow:hidden}
 .progress>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent1),var(--accent2));width:0;transition:width .45s ease}
@@ -47,7 +89,7 @@ body{
 @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
 .options{display:flex;flex-direction:column;gap:10px;margin-top:18px}
 .option{
-  background:rgba(255,255,255,0.02);
+  background:var(--glass);
   border-radius:12px;padding:12px 14px;cursor:pointer;
   font-weight:800;text-align:center;
   border:1px solid rgba(255,255,255,0.04);
@@ -97,7 +139,7 @@ body{
   box-shadow:0 8px 30px rgba(255,150,0,0.06)
 }
 .small{font-size:13px;margin-top:8px}
-.row{display:flex;gap:10px;justify-content:center;margin-top:16px}
+.row{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
 .btn-ghost{
   padding:10px 14px;border-radius:10px;
   border:1px solid rgba(255,255,255,0.06);
@@ -117,26 +159,27 @@ body{
 }
 .cookie-actions{display:flex;gap:10px}
 
-/* 🔥 FULL IMAGE SECTION */
-.image-section {
-  width: 100%;
-  height: 1080px;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 16px;
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width:920px){
+  .container{padding:18px}
 }
-.image-section img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-  display: block;
-}
-
-@media (max-width:520px){
+@media (max-width:640px){
   .container{padding:14px}
   .hype{font-size:18px}
-  .image-section{height:160px}
+  .join-btn{padding:12px 18px;font-size:15px;border-radius:12px}
+  .progressNum{display:none}
+  .hero-badge{left:12px;top:12px;padding:6px 10px;font-size:13px}
+  .image-section{height: clamp(160px, 40vw, 360px);}
+  .row{gap:8px}
+  .option{padding:10px 12px}
+  .small{font-size:12px}
+}
+
+/* extra small phones */
+@media (max-width:380px){
+  .hype{font-size:16px;padding:8px 10px}
+  .join-btn{width:100%;display:block}
+  .row{flex-direction:column;gap:10px}
 }
 </style>
 </head>
@@ -146,6 +189,15 @@ body{
   <div class="progressWrap">
     <div class="progress"><i id="bar"></i></div>
     <div class="progressNum" id="progNum">0%</div>
+  </div>
+
+  <!-- HERO / IMAGE: background-image is set by JS for safe loading & responsiveness -->
+  <div class="image-section" id="heroSection" aria-hidden="false">
+    <div class="image-overlay" aria-hidden="true"></div>
+    <!-- badge is optional -->
+    <div class="hero-badge" id="heroBadge">ForexGold Tournament</div>
+    <!-- you can include an <img> fallback for SEO / screen readers if needed -->
+    <!-- <img id="heroImg" src="..." alt="ForexGold tournament preview" loading="lazy"> -->
   </div>
 
   <div id="q-box"></div>
@@ -165,7 +217,18 @@ body{
 </div>
 
 <script>
+/* ---------------------
+  CONFIG
+----------------------*/
 const fbPixelId = '1357908655770996';
+const telegramWebLink = "https://t.me/+6D7PwRfgQflhZGVh";
+
+/* Set the hero image url here (replace if you want another) */
+const heroImageUrl = "https://iili.io/KrJfiOP.md.png"; // <-- your image
+
+/* ---------------------
+  PIXEL CONSENT
+----------------------*/
 function initMetaPixel(){
   if(window.__META_PIXEL_INIT) return;
   !function(f,b,e,v,n,t,s)
@@ -198,8 +261,33 @@ try{
 document.getElementById('acceptCookies').addEventListener('click', ()=>setConsent('accept'));
 document.getElementById('declineCookies').addEventListener('click', ()=>setConsent('decline'));
 
-const telegramWebLink = "https://t.me/+6D7PwRfgQflhZGVh";
+/* ---------------------
+  HERO IMAGE: set background with progressive load & accessible alt
+----------------------*/
+const heroSection = document.getElementById('heroSection');
+function setHeroBackground(url){
+  // Start with a tiny blurred placeholder if you have one (not required).
+  // We'll load the real image off-DOM to avoid layout jank.
+  const img = new Image();
+  img.loading = 'lazy';
+  img.src = url;
+  img.alt = "ForexGold tournament preview";
+  img.decode && img.decode().catch(()=>{}); // try decode to avoid flicker
+  img.onload = function(){
+    heroSection.style.backgroundImage = `url('${url}')`;
+    // if you want an actual <img> in DOM for SEO, uncomment and set src:
+    // document.getElementById('heroImg').src = url;
+  };
+  img.onerror = function(){
+    // fallback: slightly different visual if load fails
+    heroSection.style.backgroundImage = `linear-gradient(90deg,#0b2540,#002a4a)`;
+  };
+}
+setHeroBackground(heroImageUrl);
 
+/* ---------------------
+  INTERACTION & UI
+----------------------*/
 let answered = false;
 const qBox = document.getElementById('q-box'),
       bar = document.getElementById('bar'),
@@ -210,14 +298,12 @@ let spotsTimer = null;
 
 function renderSingleQuestion(){
   qBox.innerHTML = `
-    <div class="question" style="text-align:center;">
+    <div class="question" style="text-align:center;padding:12px;">
       <div class="hype pulse">🏆 Ready to Join the Forex Tournament?</div>
       
       <div class="options" style="margin-top:20px;">
         <div class="option" data-val="yes">Yes — Let’s Get Started</div>
-        
       </div>
-     
     </div>
   `;
   updateProgress(0);
@@ -243,6 +329,7 @@ function safeRedirect(){
 function startSpotsDecay(spotsEl){
   let spots = initialSpots;
   if(spotsEl) spotsEl.textContent = spots;
+  spotsTimer && clearInterval(spotsTimer);
   spotsTimer = setInterval(()=>{
     let drop = spots > 15 ? Math.floor(Math.random()*2)+1 : 1;
     spots = Math.max(5, spots - drop);
@@ -254,24 +341,19 @@ function showResultFor(val){
   if(val === 'yes'){
     qBox.innerHTML = `
       <div class="thankyou" style="text-align:center;">
-       
         <div class="hype small">🔥 You’re Almost In!</div>
         
         <div style="margin-top:14px;background:linear-gradient(90deg,#fff3da,#ffe1b3);color:#2b0a00;padding:8px 12px;border-radius:10px;font-weight:800;display:inline-block;font-size:13px;">
           ⚡ Limited seats available — early members get exclusive tools.
         </div>
+
         <div class="row" style="margin-top:20px;">
-          <a id="joinBtn" class="join-btn" href="#" target="_blank" rel="noopener">Join the Challenge →</a>
+          <a id="joinBtn" class="join-btn" href="${telegramWebLink}" target="_blank" rel="noopener">Join the Challenge →</a>
         </div>
 
-         <div>
-          <img src="https://iili.io/KrJfiOP.md.png" alt="KrJfiOP.md.png" border="0">
-        </div>
-        
-        <div style="margin-top:12px;">
+        <div style="margin-top:14px;">
           <div class="spots small">Active Slots Left: <span id="spots">--</span></div>
         </div>
-        
       </div>
     `;
     setTimeout(()=>{
@@ -279,10 +361,10 @@ function showResultFor(val){
       const spotsEl = document.getElementById('spots');
       startSpotsDecay(spotsEl);
       joinBtn.addEventListener('click', (e)=>{
-        e.preventDefault();
+        // require consent for tracking; still allow join but show cookie bar if not accepted
         const c = localStorage.getItem('fg_consent');
-        if(c !== 'accept'){ showCookieBar(); return; }
-        safeRedirect();
+        if(c !== 'accept'){ e.preventDefault(); showCookieBar(); return; }
+        // otherwise natural link will open because href is set
       });
     }, 50);
   } else {
@@ -294,7 +376,7 @@ function showResultFor(val){
         </div>
         <div class="row" style="margin-top:18px;">
           <button id="backBtn" class="btn-ghost">Go Back</button>
-          <a id="learnBtn" class="join-btn" href="#" target="_blank" rel="noopener">Explore Resources</a>
+          <a id="learnBtn" class="join-btn" href="${telegramWebLink}" target="_blank" rel="noopener">Explore Resources</a>
         </div>
       </div>
     `;
@@ -303,12 +385,13 @@ function showResultFor(val){
       document.getElementById('learnBtn').addEventListener('click', ()=>{
         const c = localStorage.getItem('fg_consent');
         if(c !== 'accept'){ showCookieBar(); return; }
-        safeRedirect();
+        // link already set
       });
     },50);
   }
 }
 
+/* initial render */
 renderSingleQuestion();
 </script>
 </body>
