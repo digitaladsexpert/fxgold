@@ -1,398 +1,205 @@
 <!doctype html>
-<html lang="en">
+<html lang="hi">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Forex Challenge</title>
-<meta name="description" content="Join the ForexGold participation trading challenge — sharpen your trading skills in a safe, educational environment."/>
-<meta name="theme-color" content="#001022">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
 
-<style>
-:root{
-  --accent1:#ffb300;
-  --accent2:#ff6b00;
-  --text:#e6eefb;
-  --muted:#bfcfe6;
-  --card-bg:rgba(6,8,15,0.92);
-  --glass: rgba(255,255,255,0.02);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{
-  background:linear-gradient(160deg,#001022,#002a4a);
-  display:flex;align-items:center;justify-content:center;
-  flex-direction:column;
-  padding:18px;color:var(--text);
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
-.container{
-  width:100%;max-width:920px;
-  background:var(--card-bg);
-  border-radius:14px;padding:22px;
-  box-shadow:0 24px 60px rgba(0,10,30,0.6);
-  position:relative;overflow:hidden;
-  color:var(--text);text-align:center;
-}
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background:#f0f4f3;
+      color:#0b1220;
+      padding:0px;
+      display:flex;
+      justify-content:center;
+    }
 
-/* HERO / IMAGE */
-.image-section {
-  width:100%;
-  border-radius:12px;
-  overflow:hidden;
-  position:relative;
-  margin-bottom:16px;
-  /* fluid height: desktop tall, mobile compact */
-  height: clamp(220px, 45vw, 520px);
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-}
+    .wrap{
+      width:100%;
+      max-width:1080px;
+      background:#fff;
+      border-radius:10px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      text-align:center;
+      padding:20px;
+    }
 
-/* optional overlay to improve text contrast */
-.image-overlay {
-  position:absolute;inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.45));
-  pointer-events:none;
-}
+    
 
-/* if you prefer using an <img> for SEO, there's a fallback class */
-.image-section img {
-  width:100%;height:100%;object-fit:cover;display:block;
-}
+    .logo{
+      width:90px;
+      height:90px;
+      border-radius:16px;
+      background:#e9f6ff;
+      margin:0 auto 14px;
+      overflow:hidden;
+    }
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
 
-/* small badge/logo area on hero (optional) */
-.hero-badge{
-  position:absolute;left:16px;top:16px;
-  background:linear-gradient(90deg,#fff7e6,#fff1d6);
-  color:#2a0a00;padding:8px 12px;border-radius:10px;font-weight:800;
-  box-shadow:0 10px 30px rgba(0,0,0,0.35);
-}
+    .heading h1{
+      font-size:20px;
+      font-weight:700;
+      line-height:1.3;
+      margin-bottom:6px;
+    }
+    .accent{color:#0aa3ff;}
 
-/* rest of the card content */
-.progressWrap{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.progress{flex:1;height:9px;background:rgba(255,255,255,0.03);border-radius:999px;overflow:hidden}
-.progress>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent1),var(--accent2));width:0;transition:width .45s ease}
-.progressNum{min-width:44px;text-align:right;color:var(--muted);font-weight:700;font-size:13px}
-.hype{
-  display:inline-block;padding:10px 14px;border-radius:12px;
-  font-weight:900;font-size:20px;
-  background:linear-gradient(90deg,#ffeabf,#ffc680);
-  color:#1b0520;box-shadow:0 8px 30px rgba(255,160,0,0.15);
-}
-.hype.small{font-size:16px;padding:8px 12px}
-.pulse{animation:pulse 1.6s infinite}
-@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
-.options{display:flex;flex-direction:column;gap:10px;margin-top:18px}
-.option{
-  background:var(--glass);
-  border-radius:12px;padding:12px 14px;cursor:pointer;
-  font-weight:800;text-align:center;
-  border:1px solid rgba(255,255,255,0.04);
-  box-shadow:0 8px 30px rgba(0,0,0,0.5);
-  transition:transform .16s,box-shadow .16s,background .16s;
-}
-.option:hover{
-  transform:translateY(-6px);
-  box-shadow:0 18px 46px rgba(255,160,0,0.12);
-  background:linear-gradient(90deg,rgba(255,140,0,0.08),rgba(255,180,0,0.06));
-}
-.option.selected{
-  background:linear-gradient(90deg,rgba(255,180,0,0.18),rgba(255,120,0,0.12));
-  color:#fff;transform:translateY(-8px)
-}
-.join-btn{
-  display:inline-block;
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(270deg,#ffb300,#ff6b00,#ffb300);
-  background-size:400% 400%;
-  color:#fff;padding:14px 22px;
-  border-radius:14px;font-weight:900;text-decoration:none;
-  box-shadow:0 0 25px rgba(255,160,0,0.3);
-  animation:gradientMove 3s ease infinite, glowPulse 2s ease-in-out infinite;
-  transition:transform .2s;margin:auto;
-}
-.join-btn:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 40px rgba(255,180,0,0.45);
-}
-@keyframes gradientMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-@keyframes glowPulse{
-  0%{box-shadow:0 0 20px rgba(255,160,0,0.3)}
-  50%{box-shadow:0 0 35px rgba(255,180,0,0.6)}
-  100%{box-shadow:0 0 20px rgba(255,160,0,0.3)}
-}
-.spots{
-  margin-top:10px;font-weight:900;
-  background:linear-gradient(90deg,#fff7e6,#fff1d6);
-  color:#2a0a00;padding:8px 12px;border-radius:12px;
-  display:inline-block;
-  box-shadow:0 8px 30px rgba(255,150,0,0.06)
-}
-.small{font-size:13px;margin-top:8px}
-.row{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
-.btn-ghost{
-  padding:10px 14px;border-radius:10px;
-  border:1px solid rgba(255,255,255,0.06);
-  background:transparent;color:var(--text);
-  font-weight:700;text-decoration:none;cursor:pointer
-}
-.disclaimer{
-  margin-top:18px;font-size:13px;
-  color:#ffd0a0;background:rgba(0,0,0,0.2);
-  padding:10px;border-radius:10px;text-align:center;
-}
-.cookie-bar{
-  position:fixed;left:12px;right:12px;bottom:18px;
-  background:#fff;padding:12px;border-radius:12px;
-  color:#111;box-shadow:0 12px 40px rgba(0,0,0,0.4);
-  display:flex;gap:12px;align-items:center;justify-content:space-between;z-index:9999
-}
-.cookie-actions{display:flex;gap:10px}
+    .sub-title{
+      color:#0b6b2e;
+      font-weight:700;
+      margin-bottom:6px;
+    }
 
-/* RESPONSIVE ADJUSTMENTS */
-@media (max-width:920px){
-  .container{padding:18px}
-}
-@media (max-width:640px){
-  .container{padding:14px}
-  .hype{font-size:18px}
-  .join-btn{padding:12px 18px;font-size:15px;border-radius:12px}
-  .progressNum{display:none}
-  .hero-badge{left:12px;top:12px;padding:6px 10px;font-size:13px}
-  .image-section{height: clamp(160px, 40vw, 360px);}
-  .row{gap:8px}
-  .option{padding:10px 12px}
-  .small{font-size:12px}
-}
+    .stats{
+      margin-bottom:12px;
+      color:#444;
+      font-weight:600;
+    }
 
-/* extra small phones */
-@media (max-width:380px){
-  .hype{font-size:16px;padding:8px 10px}
-  .join-btn{width:100%;display:block}
-  .row{flex-direction:column;gap:10px}
-}
-</style>
+    .desc{
+      padding:10px;
+      font-size:14px;
+      margin-bottom:16px;
+      color:#333;
+    }
+    .desc small{color:#777;}
+
+    .btn-telegram{
+      background:linear-gradient(180deg,#0b7b2b,#045d1f);
+      color:#fff;
+      padding:14px 32px;
+      border-radius:40px;
+      font-weight:800;
+      font-size:18px;
+      text-decoration:none;
+      display:inline-block;
+      animation:pulseBtn 2s infinite ease-in-out;
+      box-shadow:0 0 20px rgba(11,123,43,0.4);
+      margin-bottom:14px;
+    }
+
+    @keyframes pulseBtn{
+      0%{transform:scale(1)}
+      50%{transform:scale(1.05)}
+      100%{transform:scale(1)}
+    }
+
+    .timer-row{
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      margin-bottom:14px;
+    }
+    .timer-pill{
+      background:#e6f5ff;
+      padding:8px 14px;
+      border-radius:20px;
+      font-weight:700;
+    }
+
+    .note{
+      font-size:14px;
+      color:#333;
+      margin-bottom:10px;
+    }
+
+    .footer-links{
+      margin-top:20px;
+      font-size:13px;
+      line-height:1.7;
+    }
+    .footer-links a{
+      color:#0a84ff;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    .fb-disclaimer{
+      font-size:12px;
+      color:#777;
+      margin-top:20px;
+      line-height:1.5;
+    }
+  </style>
+
+
+
 </head>
+  
 
 <body>
-<main class="container" id="card">
-  <div class="progressWrap">
-    <div class="progress"><i id="bar"></i></div>
-    <div class="progressNum" id="progNum">0%</div>
+
+<div class="wrap">
+
+  
+
+  <div class="logo">
+    <img src="wt.png" alt="Logo">
   </div>
 
-  <!-- HERO / IMAGE: background-image is set by JS for safe loading & responsiveness -->
-  <div class="image-section" id="heroSection" aria-hidden="false">
-    <div class="image-overlay" aria-hidden="true"></div>
-    <!-- badge is optional -->
-    <div class="hero-badge" id="heroBadge">ForexGold Tournament</div>
-    <!-- you can include an <img> fallback for SEO / screen readers if needed -->
-    <!-- <img id="heroImg" src="..." alt="ForexGold tournament preview" loading="lazy"> -->
+  <div class="heading">
+    <h1>Learn how to Trade with <span class="accent">The Wolf Trading Experts</span></h1>
   </div>
 
-  <div id="q-box"></div>
-</main>
+  <div class="sub-title">Unlock the Secrets to Crypto & Forex Success</div>
+  <div class="stats">8,555 Subscribers</div>
 
-<div id="cookieBar" class="cookie-bar" style="display:none;">
-  <div>
-    <strong>Privacy & tracking</strong>
-    <div style="font-size:13px;color:#333;max-width:560px">
-      We use cookies & analytics to enhance your experience. Tracking (including Meta Pixel) starts only after you accept.
-    </div>
+  <div class="desc">
+    The Best Crypto and Forex Signals For Educational Use Only.<br>
+    <small>No financial advice • Market risk involved</small>
   </div>
-  <div class="cookie-actions">
-    <button id="declineCookies" class="btn-ghost" style="background:transparent;color:#222;border:1px solid #ddd">Decline</button>
-    <button id="acceptCookies" class="join-btn">Accept & Continue</button>
+
+  <!-- ✅ BUTTON → redirect.html -->
+  <a class="btn-telegram" href="https://t.me/+BUMHB9iRGVMzM2E1" target="_blank">
+    View In Telegram
+  </a>
+
+  <div class="timer-row">
+    <div class="timer-pill" id="minutes">10 Min</div>
+    <div class="timer-pill" id="seconds">00 Sec</div>
   </div>
+
+  <div class="note">
+    If you have <b>Telegram</b>, you can join instantly
+  </div>
+
+  <div class="footer-links">
+    Ads Maintained By
+    <a href="https://t.me/+ifc6dyg-xiA2ZGE1" target="_blank">Digital Ads Expert</a><br><br>
+    <a href="https://ElitePips.online/privacy" target="_blank">Privacy Policy</a> •
+    <a href="https://ElitePips.online/disclaimer" target="_blank">Disclaimer</a> •
+    <a href="https://ElitePips.online/terms" target="_blank">Terms</a>
+  </div>
+
+  <div class="fb-disclaimer">
+    This site is not a part of the Facebook™ website or Facebook Inc.
+    This site is NOT endorsed by Facebook™ in any way.
+  </div>
+
 </div>
 
 <script>
-/* ---------------------
-  CONFIG
-----------------------*/
-const fbPixelId = '1357908655770996';
-const telegramWebLink = "https://t.me/+6D7PwRfgQflhZGVh";
+let remaining = 10 * 60;
+const m = document.getElementById("minutes");
+const s = document.getElementById("seconds");
 
-/* Set the hero image url here (replace if you want another) */
-const heroImageUrl = "banner.png"; // <-- your image
-
-/* ---------------------
-  PIXEL CONSENT
-----------------------*/
-function initMetaPixel(){
-  if(window.__META_PIXEL_INIT) return;
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', fbPixelId);
-  fbq('track', 'PageView');
-  window.__META_PIXEL_INIT = true;
+function updateTimer(){
+  if(remaining <= 0) return;
+  const min = Math.floor(remaining / 60);
+  const sec = remaining % 60;
+  m.textContent = (min < 10 ? "0"+min : min) + " Min";
+  s.textContent = (sec < 10 ? "0"+sec : sec) + " Sec";
+  remaining--;
 }
-
-const cookieBar = document.getElementById('cookieBar');
-function showCookieBar(){ cookieBar.style.display = 'flex'; }
-function hideCookieBar(){ cookieBar.style.display = 'none'; }
-function setConsent(choice){
-  try{ localStorage.setItem('fg_consent', choice); }catch(e){}
-  if(choice === 'accept'){ initMetaPixel(); }
-  hideCookieBar();
-}
-try{
-  const c = localStorage.getItem('fg_consent');
-  if(!c) showCookieBar();
-  else if(c === 'accept') initMetaPixel();
-}catch(e){ showCookieBar(); }
-
-document.getElementById('acceptCookies').addEventListener('click', ()=>setConsent('accept'));
-document.getElementById('declineCookies').addEventListener('click', ()=>setConsent('decline'));
-
-/* ---------------------
-  HERO IMAGE: set background with progressive load & accessible alt
-----------------------*/
-const heroSection = document.getElementById('heroSection');
-function setHeroBackground(url){
-  // Start with a tiny blurred placeholder if you have one (not required).
-  // We'll load the real image off-DOM to avoid layout jank.
-  const img = new Image();
-  img.loading = 'lazy';
-  img.src = url;
-  img.alt = "ForexGold tournament preview";
-  img.decode && img.decode().catch(()=>{}); // try decode to avoid flicker
-  img.onload = function(){
-    heroSection.style.backgroundImage = `url('${url}')`;
-    // if you want an actual <img> in DOM for SEO, uncomment and set src:
-    // document.getElementById('heroImg').src = url;
-  };
-  img.onerror = function(){
-    // fallback: slightly different visual if load fails
-    heroSection.style.backgroundImage = `linear-gradient(90deg,#0b2540,#002a4a)`;
-  };
-}
-setHeroBackground(heroImageUrl);
-
-/* ---------------------
-  INTERACTION & UI
-----------------------*/
-let answered = false;
-const qBox = document.getElementById('q-box'),
-      bar = document.getElementById('bar'),
-      progNum = document.getElementById('progNum');
-
-let initialSpots = Math.floor(Math.random() * (32 - 18 + 1)) + 18;
-let spotsTimer = null;
-
-function renderSingleQuestion(){
-  qBox.innerHTML = `
-    <div class="question" style="text-align:center;padding:12px;">
-      <div class="hype pulse">🏆 Ready to Join the Forex Tournament?</div>
-      
-      <div class="options" style="margin-top:20px;">
-        <div class="option" data-val="yes">Yes — Let’s Get Started</div>
-      </div>
-    </div>
-  `;
-  updateProgress(0);
-  document.querySelectorAll('.option').forEach(o=>o.addEventListener('click',onChooseSingle));
-}
-
-function updateProgress(pct){
-  bar.style.width = pct + "%";
-  progNum.textContent = pct + "%";
-}
-
-function onChooseSingle(ev){
-  if(answered) return;
-  answered = true;
-  const val = ev.currentTarget.getAttribute('data-val');
-  setTimeout(()=>{ updateProgress(100); showResultFor(val); },220);
-}
-
-function safeRedirect(){
-  window.open(telegramWebLink, '_blank', 'noopener');
-}
-
-function startSpotsDecay(spotsEl){
-  let spots = initialSpots;
-  if(spotsEl) spotsEl.textContent = spots;
-  spotsTimer && clearInterval(spotsTimer);
-  spotsTimer = setInterval(()=>{
-    let drop = spots > 15 ? Math.floor(Math.random()*2)+1 : 1;
-    spots = Math.max(5, spots - drop);
-    if(spotsEl) spotsEl.textContent = spots;
-  }, Math.floor(Math.random()*5000) + 4000);
-}
-
-function showResultFor(val){
-  if(val === 'yes'){
-    qBox.innerHTML = `
-      <div class="thankyou" style="text-align:center;">
-        <div class="hype small">🔥 You’re Almost In!</div>
-        
-        <div style="margin-top:14px;background:linear-gradient(90deg,#fff3da,#ffe1b3);color:#2b0a00;padding:8px 12px;border-radius:10px;font-weight:800;display:inline-block;font-size:13px;">
-          ⚡ Limited seats available — early members get exclusive tools.
-        </div>
-
-        <div class="row" style="margin-top:20px;">
-          <a id="joinBtn" class="join-btn" href="${telegramWebLink}" target="_blank" rel="noopener">Join the Challenge →</a>
-        </div>
-
-        <div style="margin-top:14px;">
-          <div class="spots small">Active Slots Left: <span id="spots">--</span></div>
-        </div>
-      </div>
-    `;
-    setTimeout(()=>{
-      const joinBtn = document.getElementById('joinBtn');
-      const spotsEl = document.getElementById('spots');
-      startSpotsDecay(spotsEl);
-      joinBtn.addEventListener('click', (e)=>{
-        // require consent for tracking; still allow join but show cookie bar if not accepted
-        const c = localStorage.getItem('fg_consent');
-        if(c !== 'accept'){ e.preventDefault(); showCookieBar(); return; }
-        // otherwise natural link will open because href is set
-      });
-    }, 50);
-  } else {
-    qBox.innerHTML = `
-      <div class="thankyou" style="text-align:center;">
-        <div class="hype small">No Problem 👋</div>
-        <div style="margin-top:10px;color:#cfdaf0;font-weight:500;">
-          You can join anytime — follow our free learning resources and updates on Telegram.
-        </div>
-        <div class="row" style="margin-top:18px;">
-          <button id="backBtn" class="btn-ghost">Go Back</button>
-          <a id="learnBtn" class="join-btn" href="${telegramWebLink}" target="_blank" rel="noopener">Explore Resources</a>
-        </div>
-      </div>
-    `;
-    setTimeout(()=>{
-      document.getElementById('backBtn').addEventListener('click', ()=>{ answered=false; renderSingleQuestion(); });
-      document.getElementById('learnBtn').addEventListener('click', ()=>{
-        const c = localStorage.getItem('fg_consent');
-        if(c !== 'accept'){ showCookieBar(); return; }
-        // link already set
-      });
-    },50);
-  }
-}
-
-/* initial render */
-renderSingleQuestion();
+updateTimer();
+setInterval(updateTimer, 1000);
 </script>
+
 </body>
 </html>
