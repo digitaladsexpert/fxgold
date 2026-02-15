@@ -3,161 +3,172 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+  <title>Wolf Trading – Gold Learning Community</title>
 
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1679136806788382');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1679136806788382&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1679136806788382');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1679136806788382&ev=PageView&noscript=1"/>
+  </noscript>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0}
 
-  .gta-wrapper{
-    background:#f6f7f9;
-    padding:20px;
-    font-family:Poppins,sans-serif;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
+    body{
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(135deg,#0f172a,#1e293b);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#0f172a;
+    }
 
-  .gta-card{
-    max-width:420px;
-    background:#fff;
-    border-radius:20px;
-    padding:28px 22px;
-    text-align:center;
-    box-shadow:0 25px 60px rgba(0,0,0,.12);
-    animation:cardEnter .8s ease forwards;
-  }
+    .card{
+      width:100%;
+      max-width:430px;
+      background:#ffffff;
+      border-radius:24px;
+      padding:32px 26px;
+      text-align:center;
+      box-shadow:0 30px 80px rgba(0,0,0,0.25);
+      animation:fadeUp .8s ease forwards;
+    }
 
-  @keyframes cardEnter{
-    from{opacity:0;transform:translateY(20px) scale(.97)}
-    to{opacity:1;transform:none}
-  }
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(30px) scale(.96)}
+      to{opacity:1;transform:none}
+    }
 
-  .gta-logo{
-    width:64px;
-    height:64px;
-    border-radius:50%;
-    background:#f3efe6;
-    margin:0 auto 16px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-  }
+    .logo{
+      width:72px;
+      height:72px;
+      margin:0 auto 18px;
+      border-radius:50%;
+      overflow:hidden;
+      box-shadow:0 8px 18px rgba(0,0,0,.15);
+    }
 
-  .gta-logo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    border-radius:50%;
-  }
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
 
-  .gta-card h1{
-    font-size:22px;
-    margin:0 0 6px;
-  }
+    h1{
+      font-size:24px;
+      font-weight:700;
+      margin-bottom:6px;
+    }
 
-  .gta-sub{
-    font-size:13px;
-    color:#666;
-    margin-bottom:18px;
-  }
+    .subtitle{
+      font-size:13px;
+      color:#64748b;
+      margin-bottom:22px;
+    }
 
-  .gta-list{
-    list-style:none;
-    padding:0;
-    margin:18px 0;
-  }
+    .features{
+      list-style:none;
+      margin:20px 0;
+      text-align:left;
+    }
 
-  .gta-list li{
-    font-size:14px;
-    margin-bottom:10px;
-  }
+    .features li{
+      font-size:14px;
+      margin-bottom:12px;
+      display:flex;
+      gap:8px;
+      align-items:flex-start;
+    }
 
-  .gta-cta{
-    display:block;
-    background:#1e88e5;
-    color:#fff!important;
-    text-decoration:none;
-    padding:14px;
-    border-radius:12px;
-    font-weight:600;
-    animation:pulse 1.8s infinite;
-  }
+    .cta{
+      display:block;
+      margin-top:18px;
+      background:linear-gradient(135deg,#2563eb,#1d4ed8);
+      color:#fff;
+      text-decoration:none;
+      padding:15px;
+      border-radius:14px;
+      font-weight:600;
+      font-size:15px;
+      transition:.25s ease;
+      box-shadow:0 12px 30px rgba(37,99,235,.35);
+    }
 
-  @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(30,136,229,.45)}
-    70%{box-shadow:0 0 0 14px rgba(30,136,229,0)}
-    100%{box-shadow:0 0 0 0 rgba(30,136,229,0)}
-  }
+    .cta:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 36px rgba(37,99,235,.45);
+    }
 
-  .gta-note{
-    font-size:11px;
-    color:#888;
-    margin-top:14px;
-    line-height:1.5;
-  }
+    .note{
+      font-size:11px;
+      color:#64748b;
+      margin-top:14px;
+      line-height:1.5;
+    }
 
-  .gta-footer{
-    margin-top:18px;
-    font-size:11px;
-    color:#777;
-    line-height:1.7;
-  }
+    .footer{
+      margin-top:22px;
+      font-size:11px;
+      color:#94a3b8;
+      line-height:1.7;
+    }
 
-  .gta-footer a{
-    color:#1e88e5;
-    text-decoration:none;
-  }
+    .footer a{
+      color:#2563eb;
+      text-decoration:none;
+      font-weight:500;
+    }
+
+    @media (max-width:420px){
+      .card{padding:26px 18px}
+    }
   </style>
 </head>
 
 <body>
 
-<div class="gta-wrapper">
-  <div class="gta-card">
+  <div class="card">
 
-    <div class="gta-logo">
+    <div class="logo">
       <img src="wt.jpeg" alt="Wolf Trading Logo">
     </div>
 
     <h1>Wolf Trading</h1>
-    <div class="gta-sub">Educational Gold Market Learning Community</div>
+    <div class="subtitle">Professional Gold (XAUUSD) Education — Limited Seats Open</div>
 
-    <ul class="gta-list">
-      <li>✔ Structured XAUUSD market observation</li>
-      <li>✔ Rule-based execution learning</li>
-      <li>✔ Simplified educational explanations</li>
-      <li>✔ Community-driven learning environment</li>
-      <li>✔ Educational content only</li>
+    <ul class="features">
+      <li>✔ Step‑by‑step understanding of real gold market structure</li>
+      <li>✔ Beginner‑friendly rule‑based learning system</li>
+      <li>✔ Practical live chart explanations for clarity</li>
+      <li>✔ Focused and disciplined learning community</li>
+      <li>✔ Strictly educational — no signals, no hype, no false promises</li>
     </ul>
 
-    <a href="https://t.me/+Fo9Z_ug33zMzZGE1" target="_blank" class="gta-cta">
-      Join Now Telegram
+    <a href="https://t.me/+Fo9Z_ug33zMzZGE1" target="_blank" class="cta" onclick="fbq('track','Lead')">
+      Join Free Telegram Learning Group Now
     </a>
 
-    <div class="gta-note">
-      Educational purpose only • No tips • No guarantees • No investment advice
+    <div class="note">
+      ⚠️ Entry is limited to maintain learning quality. Access may close anytime once the group capacity is reached.
     </div>
 
-    <div class="gta-footer">
+    <div class="footer">
       <div>
         <a href="https://elitepips.online/terms/">Terms</a> |
         <a href="https://elitepips.online/privacy/">Privacy</a> |
@@ -167,12 +178,43 @@ src="https://www.facebook.com/tr?id=1679136806788382&ev=PageView&noscript=1"
         Managed by <a href="https://t.me/+dAEagvqNHo45ZGI1" target="_blank"><strong>ShriRam Media</strong></a>
       </div>
       <div>
-        Not affiliated with Meta Platforms, Inc.
+        This page is not associated with Meta Platforms, Inc.
+      </div>
+    </div>
+      </div>
+    </div>
       </div>
     </div>
 
   </div>
-</div>
+
+  <script>
+    // Live countdown timer (resets every 24 hours)
+    const note = document.querySelector('.note');
+    const timerEl = document.createElement('div');
+    timerEl.style.fontSize = '13px';
+    timerEl.style.fontWeight = '600';
+    timerEl.style.color = '#dc2626';
+    timerEl.style.marginTop = '10px';
+
+    note.parentNode.insertBefore(timerEl, note);
+
+    function updateTimer(){
+      const now = new Date();
+      const end = new Date();
+      end.setHours(23,59,59,999);
+      const diff = end - now;
+
+      const h = Math.floor(diff / (1000*60*60));
+      const m = Math.floor((diff / (1000*60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+
+      timerEl.textContent = `⏳ Free access closing in ${h}h ${m}m ${s}s`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
 
 </body>
 </html>
